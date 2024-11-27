@@ -1,0 +1,23 @@
+services:
+  # Frontend Deployment
+  - name: chat-app-frontend
+    type: static
+    env: static
+    staticPublishPath: client/dist
+    buildCommand: npm run build
+    startCommand: null
+    envVars:
+      - key: VITE_BACKEND_URL
+        value: "wss://127.0.0.1" # Replace with your backend URL
+
+  # Backend Deployment
+  - name: chat-app-backend
+    type: web
+    env: node
+    buildCommand: npm install
+    startCommand: node server.js
+    envVars:
+      - key: PORT
+        value: "10000" # Render assigns a port, override this if needed
+      - key: NODE_ENV
+        value: "production"
