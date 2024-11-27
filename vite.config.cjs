@@ -19,4 +19,5 @@ module.exports = defineConfig({
         outDir: 'dist',
         sourcemap: true,
     },
+    assetsInclude: ['**/*.js'], // Ensure .js files are included
 });
