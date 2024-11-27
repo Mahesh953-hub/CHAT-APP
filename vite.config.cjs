@@ -1,21 +1,22 @@
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-var vite_1 = require("vite");
-var plugin_react_1 = require("@vitejs/plugin-react");
-var path_1 = require("path");
-exports.default = (0, vite_1.defineConfig)({
-    plugins: [(0, plugin_react_1.default)()],
+
+const { defineConfig } = require("vite");
+const react = require("@vitejs/plugin-react");
+const path = require("path");
+
+module.exports = defineConfig({
+    plugins: [react()],
     resolve: {
         alias: {
-            '@': path_1.default.resolve(__dirname, './src'),
-            '@components': path_1.default.resolve(__dirname, './src/components'),
-            '@hooks': path_1.default.resolve(__dirname, './src/hooks'),
-            '@store': path_1.default.resolve(__dirname, './src/store'),
-            '@utils': path_1.default.resolve(__dirname, './src/utils'),
+            '@': path.resolve(__dirname, './src'),
+            '@components': path.resolve(__dirname, './src/components'),
+            '@hooks': path.resolve(__dirname, './src/hooks'),
+            '@store': path.resolve(__dirname, './src/store'),
+            '@utils': path.resolve(__dirname, './src/utils'),
         },
     },
     build: {
         outDir: 'dist',
-        sourcemap: true
-    }
+        sourcemap: true,
+    },
 });
