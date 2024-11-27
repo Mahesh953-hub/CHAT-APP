@@ -1,15 +1,34 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useUser } from '../store/userStore';
 
 export const Profile: React.FC = () => {
   const { user, updateUser } = useUser();
   const [name, setName] = useState(user?.name || '');
-  const [avatar, setAvatar] = useState<File | string | null>(null);
-  //const [file, setFile] = useState<File | string | null>(null);
+  const [file, setFile] = useState<File | string | null>(null);
+
+  // Default profile picture URL
+  const DEFAULT_PROFILE_PIC_URL = 'https://envs.sh/0J1.jpg';
+
+  // Use effect to load initial avatar if available
+  const [avatar, setAvatar] = useState<string | null>(user?.avatar || DEFAULT_PROFILE_PIC_URL);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     await updateUser({ name, avatar });
+  };
+
+  // Handle file input change
+  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const selectedFile = e.target.files?.[0];
+    if (selectedFile) {
+      // If the user selects a file, we will update the avatar with the file
+      setAvatar(URL.createObjectURL(selectedFile)); // Temporarily use the file URL
+      setFile(selectedFile);
+    } else {
+      // Reset to default if no file selected
+      setAvatar(DEFAULT_PROFILE_PIC_URL);
+      setFile(null);
+    }
   };
 
   return (
@@ -35,8 +54,16 @@ export const Profile: React.FC = () => {
           <input
             type="file"
             accept="image/*"
-            onChange={(e) => setAvatar(e.target.files?.[0] || null)}
+            onChange={handleFileChange}
             className="mt-1 block w-full text-sm text-gray-500 dark:text-gray-300"
+          />
+        </div>
+
+        <div className="flex justify-center mt-4">
+          <img
+            src={avatar || DEFAULT_PROFILE_PIC_URL}
+            alt="Profile Picture"
+            className="w-32 h-32 rounded-full object-cover"
           />
         </div>
 
