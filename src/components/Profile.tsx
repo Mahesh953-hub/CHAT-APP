@@ -4,13 +4,13 @@ import { useUser } from '../store/userStore';
 export const Profile: React.FC = () => {
   const { user, updateUser } = useUser();
   const [name, setName] = useState(user?.name || '');
-  const [file, setFile] = useState<File | string | null>(null);
+  const [file, setFile] = useState<File | null>(null);
 
   // Default profile picture URL
   const DEFAULT_PROFILE_PIC_URL = 'https://envs.sh/0J1.jpg';
 
   // Use effect to load initial avatar if available
-  const [avatar, setAvatar] = useState<string | null>(user?.avatar || DEFAULT_PROFILE_PIC_URL);
+  const [avatar, setAvatar] = useState<string | undefined>(user?.avatar || DEFAULT_PROFILE_PIC_URL);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
