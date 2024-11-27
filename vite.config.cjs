@@ -1,5 +1,4 @@
 "use strict";
-
 const { defineConfig } = require("vite");
 const react = require("@vitejs/plugin-react");
 const path = require("path");
@@ -19,5 +18,5 @@ module.exports = defineConfig({
         outDir: 'dist',
         sourcemap: true,
     },
-    assetsInclude: ['**/*.js'], // Ensure .js files are included
+    assetsInclude: ['**/*.js', '**/*.css'], // Ensure .js and .css files are included
 });
