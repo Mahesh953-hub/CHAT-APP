@@ -4,7 +4,8 @@ import { useUser } from '../store/userStore';
 export const Profile: React.FC = () => {
   const { user, updateUser } = useUser();
   const [name, setName] = useState(user?.name || '');
-  const [avatar, setAvatar] = useState<File | null>(null);
+  // const [avatar, setAvatar] = useState<File | null>(null);
+  const [file, setFile] = useState<File | string | null>(null);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
