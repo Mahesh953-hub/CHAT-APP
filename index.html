@@ -1,45 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Chat-Web-App</title>
-  <!-- Link to the global stylesheet -->
-  <link rel="stylesheet" href="client/src/style.css">
-  <style>
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background-color: #f4f4f9;
-      color: #333;
-    }
-
-    #root {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      min-height: 100vh;
-      background-color: #ffffff;
-      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-      padding: 20px;
-    }
-  </style>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Chat App</title>
+    <!-- Correct link to the CSS file -->
+    <link rel="stylesheet" href="/src/index.css" />
 </head>
 <body>
-  <!-- Root container for the React app -->
-  <div id="root"></div>
-  
-  <!-- Include React and ReactDOM -->
-  <script type="module">
-    import React from "https://esm.sh/react@18";
-    import ReactDOM from "https://esm.sh/react-dom@18";
-    import App from "./client/src/App.js"; // Adjust path if App.tsx transpiles elsewhere
+    <div id="root"></div>
 
-    ReactDOM.createRoot(document.getElementById("root")).render(
-      <React.StrictMode>
-        <App />
-      </React.StrictMode>
-    );
-  </script>
+    <!-- Use type="module" to load React code properly -->
+    <script type="module" src="/src/main.tsx"></script>
 </body>
 </html>
